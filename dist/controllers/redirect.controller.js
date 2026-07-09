@@ -1,31 +1,23 @@
-import { Request, Response } from 'express';
 import { getLinkBySlug } from '../services/link.service';
 import { logScanAndRedirect } from '../services/scan.service';
-
-export async function handleSmartRedirect(req: Request, res: Response) {
-  const { slug }:any = req.params;
-  const link = await getLinkBySlug(slug);
-
-  if (!link) {
-    return res.status(404).send('Link not found');
-  }
-
-  // Get IP (handle proxies)
-  const ip = req.headers['x-forwarded-for'] as string || req.socket.remoteAddress || 'unknown';
-  const userAgent = req.headers['user-agent'] || '';
-
-  const device = await logScanAndRedirect(link, userAgent, ip);
-
-  if (device === 'android') {
-    return res.redirect(link.androidUrl);
-  }
-
-  if (device === 'ios') {
-    return res.redirect(link.iosUrl);
-  }
-
-  // Desktop: Render a basic download page (will be styled beautifully in Phase 4)
-  res.send(`
+export async function handleSmartRedirect(req, res) {
+    const { slug } = req.params;
+    const link = await getLinkBySlug(slug);
+    if (!link) {
+        return res.status(404).send('Link not found');
+    }
+    // Get IP (handle proxies)
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
+    const userAgent = req.headers['user-agent'] || '';
+    const device = await logScanAndRedirect(link, userAgent, ip);
+    if (device === 'android') {
+        return res.redirect(link.androidUrl);
+    }
+    if (device === 'ios') {
+        return res.redirect(link.iosUrl);
+    }
+    // Desktop: Render a basic download page (will be styled beautifully in Phase 4)
+    res.send(`
     <!DOCTYPE html>
     <html lang="en">
     <head><title>Download ${link.title}</title></head>
