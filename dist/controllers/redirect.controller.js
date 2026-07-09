@@ -1,5 +1,5 @@
-import { getLinkBySlug } from '../services/link.service';
-import { logScanAndRedirect } from '../services/scan.service';
+import { getLinkBySlug } from '../services/link.service.js';
+import { logScanAndRedirect } from '../services/scan.service.js';
 export async function handleSmartRedirect(req, res) {
     const { slug } = req.params;
     const link = await getLinkBySlug(slug);

@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { handleSmartRedirect } from '../controllers/redirect.controller';
-import { createLink } from '../controllers/link.controller';
+import { handleSmartRedirect } from '../controllers/redirect.controller.js';
+import { createLink } from '../controllers/link.controller.js';
 
 const router = Router();
 

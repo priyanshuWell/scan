@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createSmartLink } from '../services/link.service';
+import { createSmartLink } from '../services/link.service.js';
 
 export async function createLink(req: Request, res: Response) {
   try {

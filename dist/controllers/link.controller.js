@@ -1,4 +1,4 @@
-import { createSmartLink } from '../services/link.service';
+import { createSmartLink } from '../services/link.service.js';
 export async function createLink(req, res) {
     try {
         // Validation will be added in Phase 2 with Zod

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { getLinkBySlug } from '../services/link.service';
-import { logScanAndRedirect } from '../services/scan.service';
+import { getLinkBySlug } from '../services/link.service.js';
+import { logScanAndRedirect } from '../services/scan.service.js';
 
 export async function handleSmartRedirect(req: Request, res: Response) {
   const { slug }:any = req.params;

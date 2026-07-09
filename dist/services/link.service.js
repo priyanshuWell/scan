@@ -1,7 +1,7 @@
 import { eq } from 'drizzle-orm';
 import { nanoid } from 'nanoid';
-import { db } from '../db';
-import { smartLinks } from '../db/schema';
+import { db } from '../db/index.js';
+import { smartLinks } from '../db/schema.js';
 export async function getLinkBySlug(slug) {
     return db.query.smartLinks.findFirst({
         where: eq(smartLinks.slug, slug),

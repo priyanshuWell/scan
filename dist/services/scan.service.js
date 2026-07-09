@@ -1,6 +1,6 @@
-import { db } from '../db';
-import { scans } from '../db/schema';
-import { detectDevice, getBrowserAndOS } from '../utils/ua-parser';
+import { db } from '../db/index.js';
+import { scans } from '../db/schema.js';
+import { detectDevice, getBrowserAndOS } from '../utils/ua-parser.js';
 import { createHash } from 'crypto';
 // Stub for geo-location (will integrate MaxMind or IP-API in Phase 4)
 async function getGeoLocation(ip) {
